@@ -138,8 +138,6 @@ GListStore *init_process(){
     store = g_list_store_new(PACKAGE_TYPE_OBJECT);
 
     store_value = g_list_model_get_n_items(G_LIST_MODEL(store));
-
-    g_print("store_value_before_parsing:%d\n", store_value);
     
     process = g_subprocess_new(G_SUBPROCESS_FLAGS_STDOUT_PIPE,
 			       &error,
@@ -169,18 +167,13 @@ GListStore *init_process(){
     }
 
     size = g_bytes_get_size(buffer);
-      
 
     char *data;
 
     data = g_bytes_get_data(buffer, &size);
 
-    
     parser_init(data, size, store);
     store_value = g_list_model_get_n_items(G_LIST_MODEL(store));
-
-    g_print("store_value_after_parsing:%d\n", store_value);
- 
 
     g_bytes_unref(buffer);
     g_object_unref(process);

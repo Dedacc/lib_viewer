@@ -23,7 +23,7 @@ static void init(AdwApplication *application){
 int main (int argc, char **argv){
   g_autoptr (AdwApplication) app = NULL;
 
-  app = adw_application_new ("org.gtk.gpkg", G_APPLICATION_DEFAULT_FLAGS);
+  app = adw_application_new ("org.gtk.lib_viewer", G_APPLICATION_DEFAULT_FLAGS);
   g_signal_connect(app, "activate", G_CALLBACK(init), NULL);
 
 

@@ -118,7 +118,7 @@ static void gpkg_window_init(GpkgWindow *self) {
   
   
     // adw_app_window property
-    gtk_window_set_title(GTK_WINDOW(self), "Gpkg");
+    gtk_window_set_title(GTK_WINDOW(self), "lib_viewer");
     gtk_window_maximize(GTK_WINDOW(self));
     gtk_widget_set_size_request(GTK_WIDGET(self), 880, 550);
 
@@ -127,7 +127,6 @@ static void gpkg_window_init(GpkgWindow *self) {
     adw_application_window_set_content(ADW_APPLICATION_WINDOW(self) , GTK_WIDGET(self->toolbar));
     adw_toolbar_view_set_content(ADW_TOOLBAR_VIEW(self->toolbar), GTK_WIDGET(self->box));
 
-    //box logic
     gtk_box_prepend(GTK_BOX(self->box), GTK_WIDGET(self->search_entry));
     self->store = init_process();
 
@@ -145,5 +144,11 @@ static void gpkg_window_init(GpkgWindow *self) {
     gtk_box_append(GTK_BOX(self->box), GTK_WIDGET(self->scrolled));
 
     gtk_scrolled_window_set_child(self->scrolled, GTK_WIDGET(self->list_view));
+
+    gtk_widget_set_margin_start(GTK_WIDGET(self->search_entry), 20);
+    gtk_widget_set_margin_end(GTK_WIDGET(self->search_entry), 20);
+    
+    gtk_widget_set_margin_start(GTK_WIDGET(self->list_view), 20);
+    gtk_widget_set_margin_end(GTK_WIDGET(self->list_view), 20);
 
 }
