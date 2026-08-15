@@ -87,14 +87,15 @@ static void search_changed_cb(GtkSearchEntry *entry, gpointer user_data){
     gtk_filter_changed(GTK_FILTER(self->filter), GTK_FILTER_CHANGE_DIFFERENT);
 }
 
-static void list_view_activate_cb(GtkListView *list, guint position, gpointer unused){
+static void list_view_activate_cb(GtkListView *list, guint position, gpointer self){
 
     PackageObject *package;
+    AdwApplicationWindow *window = ADW_APPLICATION_WINDOW(self);
     const gchar *name = NULL;
 
     package = g_list_model_get_item(G_LIST_MODEL(gtk_list_view_get_model(list)),position);
     name = package_object_get_name(package);
-    package_detail_show(name);
+    package_detail_show(name,window);
     
     g_object_unref(package);
     
@@ -137,7 +138,7 @@ static void gpkg_window_init(GpkgWindow *self) {
     self->selection = GTK_SINGLE_SELECTION(gtk_single_selection_new(G_LIST_MODEL(self->filter_model)));
 
     self->list_view = GTK_LIST_VIEW(gtk_list_view_new(GTK_SELECTION_MODEL(self->selection), GTK_LIST_ITEM_FACTORY(self->factory)));
-    g_signal_connect(GTK_LIST_VIEW(self->list_view), "activate", G_CALLBACK(list_view_activate_cb), NULL);
+    g_signal_connect(GTK_LIST_VIEW(self->list_view), "activate", G_CALLBACK(list_view_activate_cb), self);
     g_signal_connect(GTK_SEARCH_ENTRY(self->search_entry), "search-changed", G_CALLBACK(search_changed_cb), self);
 
     gtk_widget_set_vexpand(GTK_WIDGET(self->scrolled), TRUE);

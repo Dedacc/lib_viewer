@@ -14,7 +14,7 @@ G_DECLARE_FINAL_TYPE (PackageDialog, package_dialog, package, DIALOG, AdwDialog)
 
 
 PackageDialog *package_dialog_object_new (void);
-void package_show_dialog(PackageDialog *dialog, PackageDetail *package);
+void package_show_dialog(PackageDialog *dialog, PackageDetail *package, AdwApplicationWindow *parent);
 
 
 G_END_DECLS

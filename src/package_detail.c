@@ -118,7 +118,7 @@ static void package_detail_process(PackageDetail *package_detail,const gchar *op
     }
 }
 
-void package_detail_show (const gchar *name){
+void package_detail_show (const gchar *name, AdwApplicationWindow *parent){
 
     PackageDetail *package_detail;
     PackageDialog *dialog;
@@ -132,6 +132,6 @@ void package_detail_show (const gchar *name){
     package_detail_process(package_detail,"--libs", name);
 
 
-    package_show_dialog(dialog,package_detail);
+    package_show_dialog(dialog,package_detail,parent);
 }
 

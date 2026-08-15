@@ -20,5 +20,5 @@ typedef struct _PackageDetail{
     guint n_libs;
 } PackageDetail;
 
-void package_detail_show(const gchar *name);
+void package_detail_show(const gchar *name, AdwApplicationWindow *parent);
 

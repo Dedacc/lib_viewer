@@ -51,7 +51,7 @@ static void copy_cb(GtkButton *button, gpointer user_data){
     gdk_clipboard_set_text(clipboard, text);
 }
 
-void package_show_dialog(PackageDialog *dialog,PackageDetail *package){
+void package_show_dialog(PackageDialog *dialog,PackageDetail *package, AdwApplicationWindow *parent){
 
     GtkLabel *title;
 
@@ -85,7 +85,7 @@ void package_show_dialog(PackageDialog *dialog,PackageDetail *package){
     }
     adw_header_bar_set_title_widget(ADW_HEADER_BAR(dialog->header), GTK_WIDGET(title));
 
-    adw_dialog_present(ADW_DIALOG (dialog), NULL);
+    adw_dialog_present(ADW_DIALOG (dialog), GTK_WIDGET(parent));
 }
 
 static void
